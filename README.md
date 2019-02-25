@@ -10,7 +10,7 @@ This simple app demonstrates Venia components in use in two routes, with live Ma
 
 Here is how you consume Venia components:
 
-1. Install Venia in your project with npm `npm install @magento/venia-concept` or yarn `yarn add @magento/venia-concept`.
+1. Install Venia in your project with npm `npm install @magento/venia-concept --no-bin-links` or yarn `yarn add @magento/venia-concept --no-bin-links` (in addition to `npm install` or `yarn install`).
 
 1. Import individual Venia components from the `esm` directory of the Venia package. These files are ES Modules, so Webpack can optimize them with tree-sharking.
 
