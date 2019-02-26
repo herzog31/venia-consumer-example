@@ -8,6 +8,7 @@ A build artifact is inspectable at https://venia-consumer-example.now.sh/_src . 
 
 This simple app demonstrates Venia components in use in two routes, with live Magento data coming from a proxied backend in one case, and custom data fed to a presentational component in the other case.
 
+## Setup
 Here is how you consume Venia components:
 
 1. Install Venia in your project with npm `npm install @magento/venia-concept --no-bin-links` or yarn `yarn add @magento/venia-concept --no-bin-links` (in addition to `npm install` or `yarn install`).
@@ -27,6 +28,10 @@ function App () => (
   <VeniaAdapter store={yourOwnStore} client={yourOwnClient}
 )
 ```
+
+1. UPWARD setup for Magento GraphQL CORS support and dynamic image resizing.
+* Have [pwa-studio](https://github.com/magento-research/pwa-studio) checked out and go to the `packages/upward-js` folder. Run `yarn install`.
+* Start UPWARD with `UPWARD_JS_UPWARD_PATH=./upward.yml UPWARD_JS_BIND_LOCAL=1 UPWARD_JS_LOG_URL=1 UPWARD_JS_PORT=60000 MAGENTO_BACKEND_URL=https://xxx.magentosite.cloud DEBUG=* $(npm bin)/upward-js-server`
 
 **OR**, use your build tool (Webpack, Rollup, etc) to override the Venia **drivers component** with your own implementation of query, routing, URL building and linking modules.
 
@@ -84,6 +89,8 @@ export function resourceUrl(...args) {
 Then, you can override "deep dependencies", such as leaf nodes of Venia components using React Router Link elements.
 
 Below are the general-purpose instructions for `create-react-app` projects. Bear in mind that this project is 'ejected'!
+
+---
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 

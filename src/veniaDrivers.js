@@ -6,7 +6,7 @@ import {
 } from "@magento/venia-concept/esm/drivers";
 
 const client = new ApolloClient({
-  uri: "/graphql"
+  uri: process.env.REACT_APP_VENIA_BASE_DOMAIN + "/graphql"
 });
 
 // redux is a no-op
@@ -31,6 +31,11 @@ export class Link extends Component {
   }
 }
 export function resourceUrl(href, opts = {}, ...rest) {
+  // Delete width parameter to disable dynamic image resizing
+  if (opts.width) {
+    delete opts.width;
+  }
+
   let url = veniaResourceUrl(href, opts, ...rest);
   try {
     url = new window.URL(url);
