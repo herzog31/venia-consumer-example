@@ -29,9 +29,10 @@ function App () => (
 )
 ```
 
-1. UPWARD setup for Magento GraphQL CORS support and dynamic image resizing.
-* Have [pwa-studio](https://github.com/magento-research/pwa-studio) checked out and go to the `packages/upward-js` folder. Run `yarn install`.
+1. Start the project using UPWARD.
+* Build the project with `yarn build`.
 * Start UPWARD with `UPWARD_JS_UPWARD_PATH=./upward.yml UPWARD_JS_BIND_LOCAL=1 UPWARD_JS_LOG_URL=1 UPWARD_JS_PORT=60000 MAGENTO_BACKEND_URL=https://xxx.magentosite.cloud DEBUG=* $(npm bin)/upward-js-server`
+* Go to `http://localhost:60000/index.html`
 
 **OR**, use your build tool (Webpack, Rollup, etc) to override the Venia **drivers component** with your own implementation of query, routing, URL building and linking modules.
 
