@@ -138,6 +138,7 @@ module.exports = function(webpackEnv) {
       isEnvDevelopment &&
         require.resolve('react-dev-utils/webpackHotDevClient'),
       // Finally, this is your app's code:
+      paths.productWebComponent,
       paths.appIndexJs,
       // We include the app code last so that if there is a runtime error during
       // initialization, it doesn't blow up the WebpackDevServer client, and
@@ -339,10 +340,11 @@ module.exports = function(webpackEnv) {
                   'babel-preset-react-app/webpack-overrides'
                 ),
                 plugins: [
-                  require.resolve('@babel/plugin-proposal-class-properties'),
-                  require.resolve('@babel/plugin-syntax-dynamic-import'),
-                  require.resolve('@babel/plugin-syntax-jsx'),
-                  require.resolve('@babel/plugin-transform-react-jsx')
+                  [require.resolve('@babel/plugin-proposal-decorators'), { 'legacy': true }],
+                  [require.resolve('@babel/plugin-proposal-class-properties'), { 'loose': true }],
+                  [require.resolve('@babel/plugin-syntax-dynamic-import')],
+                  [require.resolve('@babel/plugin-syntax-jsx')],
+                  [require.resolve('@babel/plugin-transform-react-jsx')],
                 ]
               }
             },
@@ -358,22 +360,18 @@ module.exports = function(webpackEnv) {
                 ),
                 
                 plugins: [
-                  [
-                    require.resolve('babel-plugin-named-asset-import'),
-                    {
-                      loaderMap: {
-                        svg: {
-                          ReactComponent:
-                            '@svgr/webpack?-prettier,-svgo![path]',
-                        },
-                      },
+                  [require.resolve('@babel/plugin-proposal-decorators'), { 'legacy': true }],
+                  [require.resolve('@babel/plugin-proposal-class-properties'), { 'loose': true }],
+                  [require.resolve('babel-plugin-named-asset-import'), {
+                    loaderMap: {
+                      svg: { ReactComponent: '@svgr/webpack?-prettier,-svgo![path]' },
                     },
-                  ]
+                  }],
                 ],
                 // This is a feature of `babel-loader` for webpack (not Babel itself).
                 // It enables caching results in ./node_modules/.cache/babel-loader/
                 // directory for faster rebuilds.
-                cacheDirectory: true,
+                cacheDirectory: false,
                 cacheCompression: isEnvProduction,
                 compact: isEnvProduction,
               },
